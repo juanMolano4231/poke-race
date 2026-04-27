@@ -2,11 +2,19 @@ const selectionDiv = document.getElementById("selection");
 const raceDiv = document.getElementById("race");
 const resultDiv = document.getElementById("result");
 const startBtn = document.getElementById("startBtn");
+const rankingBtn = document.getElementById("rankingBtn");
 
 let pokemons = [];
 let selectedId = null;
 
+let streak = 0;
+let rankings = JSON.parse(localStorage.getItem("rankings") || "[]");
+
+// Load Pokémon with speed stat
 async function loadPokemons() {
+  selectedId = null;
+  selectionDiv.innerHTML = "";
+
   const ids = new Set();
   while (ids.size < 10) {
     ids.add(Math.floor(Math.random() * 1025) + 1);
@@ -17,7 +25,10 @@ async function loadPokemons() {
       .then(r => r.json())
   );
 
-  pokemons = await Promise.all(promises);
+  pokemons = (await Promise.all(promises)).map(p => {
+    const speedStat = p.stats.find(s => s.stat.name === "speed").base_stat;
+    return { ...p, speedStat };
+  });
 
   pokemons.forEach(p => {
     const img = document.createElement("img");
@@ -37,8 +48,17 @@ async function loadPokemons() {
 
 startBtn.onclick = () => {
   if (!selectedId) return;
-
   startRace();
+};
+
+rankingBtn.onclick = () => {
+  const text =
+    rankings
+      .sort((a, b) => b.streak - a.streak)
+      .map((r, i) => `${i + 1}. ${r.name} - ${r.streak}`)
+      .join("\n") || "No rankings yet";
+
+  alert(text);
 };
 
 function startRace() {
@@ -57,8 +77,9 @@ function startRace() {
       id: p.id,
       el: img,
       x: 0,
-      v: 0,          // current velocity
-      burstTime: 0   // frames remaining in burst
+      v: 0,
+      burstTime: 0,
+      baseSpeed: p.speedStat / 20
     };
   });
 
@@ -67,25 +88,21 @@ function startRace() {
 
   function step() {
     racers.forEach(r => {
-      // Start a burst randomly if not already in one
       if (r.burstTime <= 0 && Math.random() < 0.04) {
-        r.burstTime = Math.floor(Math.random() * 20) + 10; // duration
-        r.v = Math.random() * 8 + 4; // strong impulse
+        r.burstTime = Math.floor(Math.random() * 20) + 10;
+        r.v = r.baseSpeed + Math.random() * r.baseSpeed;
       }
 
       if (r.burstTime > 0) {
         r.burstTime--;
-        // slight decay during burst
         r.v *= 0.97;
       } else {
-        // slow down when not bursting
-        r.v *= 0.92;
+        r.v *= 0.9;
       }
 
-      // small jitter so ties break and movement never fully stops
-      const jitter = Math.random() * 0.5;
+      const jitter = Math.random() * (r.baseSpeed / 4);
 
-      r.x += r.v + jitter;
+      r.x += r.v + r.baseSpeed * 0.3 + jitter;
       r.el.style.transform = `translateX(${r.x}px)`;
 
       if (r.x >= finish && !winner) {
@@ -96,8 +113,23 @@ function startRace() {
     if (!winner) {
       requestAnimationFrame(step);
     } else {
-      resultDiv.textContent =
-        winner.id === selectedId ? "Congratulations!" : "Game Over";
+      if (winner.id === selectedId) {
+        streak++;
+        resultDiv.textContent = `Win! Streak: ${streak}`;
+      } else {
+        resultDiv.textContent = `Lose. Final streak: ${streak}`;
+        const name = prompt("Enter your name:");
+        if (name) {
+          rankings.push({ name, streak });
+          localStorage.setItem("rankings", JSON.stringify(rankings));
+        }
+        streak = 0;
+      }
+
+      setTimeout(() => {
+        raceDiv.innerHTML = "";   // clear sprites
+        loadPokemons();           // draw new set
+      }, 1000);
     }
   }
 
