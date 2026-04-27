@@ -25,16 +25,28 @@ async function loadPokemons() {
       .then(r => r.json())
   );
 
-  pokemons = (await Promise.all(promises)).map(p => {
+  pokemons = await Promise.all((await Promise.all(promises)).map(async p => {
     const speedStat = p.stats.find(s => s.stat.name === "speed").base_stat;
-    return { ...p, speedStat };
-  });
+
+    // fetch species → generation
+    const species = await fetch(p.species.url).then(r => r.json());
+    const gen = species.generation.name; // e.g. "generation-iii"
+
+    return { ...p, speedStat, gen };
+  }));
 
   pokemons.forEach(p => {
+    const container = document.createElement("div");
+    container.style.textAlign = "center";
+
     const img = document.createElement("img");
     img.src = p.sprites.front_default;
     img.className = "poke";
     img.dataset.id = p.id;
+
+    const label = document.createElement("div");
+    label.style.fontSize = "12px";
+    label.textContent = `${p.name} (${p.gen.replace("generation-", "Gen ")})`;
 
     img.onclick = () => {
       document.querySelectorAll(".poke").forEach(el => el.classList.remove("selected"));
@@ -42,7 +54,9 @@ async function loadPokemons() {
       selectedId = p.id;
     };
 
-    selectionDiv.appendChild(img);
+    container.appendChild(img);
+    container.appendChild(label);
+    selectionDiv.appendChild(container);
   });
 }
 
