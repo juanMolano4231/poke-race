@@ -1,5 +1,41 @@
-[2026-05-17 06:03:35] [user: juan] [loss] [streak: 0] [pokemon: sneasler]
-[2026-05-17 06:03:52] [user: juan] [loss] [streak: 0] [pokemon: delcatty]
-[2026-05-17 06:04:29] [user: juan] [loss] [streak: 0] [pokemon: victini]
-[2026-05-17 06:07:27] [user: mario] [win] [streak: 1] [pokemon: simipour]
-[2026-05-17 06:07:47] [user: mario] [loss] [streak: 1] [pokemon: luvdisc]
+[2026-01-03 10:14:22] [user: mario] [win] [streak: 1] [pokemon: bulbasaur]
+[2026-01-03 10:15:10] [user: mario] [win] [streak: 2] [pokemon: squirtle]
+[2026-01-03 10:16:05] [user: mario] [loss] [streak: 2] [pokemon: pikachu]
+
+[2026-01-08 14:03:11] [user: mario] [win] [streak: 1] [pokemon: charmander]
+[2026-01-08 14:04:55] [user: mario] [win] [streak: 2] [pokemon: eevee]
+[2026-01-08 14:06:12] [user: mario] [win] [streak: 3] [pokemon: meowth]
+[2026-01-08 14:07:01] [user: mario] [loss] [streak: 3] [pokemon: gengar]
+
+[2026-01-17 09:22:44] [user: luigi] [win] [streak: 1] [pokemon: psyduck]
+[2026-01-17 09:23:15] [user: luigi] [loss] [streak: 1] [pokemon: snorlax]
+
+[2026-02-02 18:11:07] [user: mario] [win] [streak: 1] [pokemon: dragonite]
+[2026-02-02 18:11:49] [user: mario] [win] [streak: 2] [pokemon: lapras]
+[2026-02-02 18:12:30] [user: mario] [loss] [streak: 2] [pokemon: alakazam]
+
+[2026-02-11 20:45:01] [user: peach] [win] [streak: 1] [pokemon: vulpix]
+[2026-02-11 20:45:54] [user: peach] [win] [streak: 2] [pokemon: ninetales]
+[2026-02-11 20:46:41] [user: peach] [loss] [streak: 2] [pokemon: machamp]
+
+[2026-03-05 08:02:13] [user: mario] [win] [streak: 1] [pokemon: articuno]
+[2026-03-05 08:03:27] [user: mario] [win] [streak: 2] [pokemon: zapdos]
+[2026-03-05 08:04:55] [user: mario] [win] [streak: 3] [pokemon: moltres]
+[2026-03-05 08:05:41] [user: mario] [loss] [streak: 3] [pokemon: ditto]
+
+[2026-03-21 16:31:10] [user: luigi] [win] [streak: 1] [pokemon: pidgeot]
+[2026-03-21 16:32:58] [user: luigi] [win] [streak: 2] [pokemon: raichu]
+[2026-03-21 16:33:44] [user: luigi] [loss] [streak: 2] [pokemon: onix]
+
+[2026-04-10 11:20:09] [user: peach] [win] [streak: 1] [pokemon: clefairy]
+[2026-04-10 11:21:33] [user: peach] [win] [streak: 2] [pokemon: jigglypuff]
+[2026-04-10 11:22:18] [user: peach] [win] [streak: 3] [pokemon: chansey]
+[2026-04-10 11:23:47] [user: peach] [loss] [streak: 3] [pokemon: golem]
+
+[2026-05-01 13:05:28] [user: mario] [win] [streak: 1] [pokemon: scyther]
+[2026-05-01 13:06:14] [user: mario] [loss] [streak: 1] [pokemon: tauros]
+
+[2026-05-15 21:44:03] [user: luigi] [win] [streak: 1] [pokemon: magikarp]
+[2026-05-15 21:45:29] [user: luigi] [win] [streak: 2] [pokemon: gyarados]
+[2026-05-15 21:46:08] [user: luigi] [win] [streak: 3] [pokemon: aerodactyl]
+[2026-05-15 21:47:40] [user: luigi] [loss] [streak: 3] [pokemon: muk]

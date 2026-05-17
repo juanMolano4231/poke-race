@@ -10,6 +10,7 @@
     body {
       font-family: sans-serif;
       text-align: center;
+      padding-bottom: 400px;
     }
 
     #selection {
