@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Pokémon Race</title>
+
   <style>
+
     body {
       font-family: sans-serif;
       text-align: center;
@@ -48,26 +50,63 @@
       margin-top: 20px;
     }
 
-    #startBtn,
-    #rankingBtn {
-      margin-top: 10px;
-      margin-right: 5px;
+    #logsPanel {
+      width: 700px;
+      height: 350px;
+      margin: 20px auto;
+      border: 1px solid black;
+      overflow-y: auto;
+      padding: 10px;
+      text-align: left;
+      background: white;
     }
+
+    .group {
+      margin-bottom: 20px;
+      border-bottom: 1px solid gray;
+      padding-bottom: 10px;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <h2>Select your Pokémon</h2>
+  <h2>Pokémon Race</h2>
+
+  <div>
+    <input type="text" id="username" placeholder="Enter username">
+    <button id="loginBtn">Login</button>
+  </div>
+
+  <br>
+
   <div id="selection"></div>
 
   <button id="startBtn">Start Race</button>
-  <button id="rankingBtn">Rankings</button>
 
   <div id="race"></div>
+
   <div id="result"></div>
 
+  <br><br>
+
+  <h2>Logs</h2>
+
+  <select id="userSelect"></select>
+
+  <select id="groupSelect">
+    <option value="all">All Time</option>
+    <option value="week">By Week</option>
+    <option value="month">By Month</option>
+  </select>
+
+  <button id="loadLogsBtn">Load Logs</button>
+
+  <div id="logsPanel"></div>
+
   <script src="script.js"></script>
+
 </body>
 
 </html>
